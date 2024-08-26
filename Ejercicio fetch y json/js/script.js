@@ -2,7 +2,6 @@
 // que nos soluciona el problema de los elementos no cargados del DOM. Más info => https://www.w3schools.com/tags/att_script_defer.asp
 
 const DATA_URL = "json/data.json"; // URL que contiene los datos que queremos mostrar
-const dataArray= JSON.parse(DATA_URL);
 const container = document.getElementById("container"); // "Traemos" utilizando el DOM el div de id "container" para colocar la información en él
 
 /**
@@ -17,5 +16,20 @@ function showData(dataArray) {
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
 }
+
+fetch(DATA_URL)
+  .then(response => {
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.json(); // Convierte la respuesta a JSON
+  })
+  .then(data => {
+    showData(data);
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
