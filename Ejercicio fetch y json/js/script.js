@@ -2,7 +2,7 @@
 // que nos soluciona el problema de los elementos no cargados del DOM. Más info => https://www.w3schools.com/tags/att_script_defer.asp
 
 const DATA_URL = "json/data.json"; // URL que contiene los datos que queremos mostrar
-
+const dataArray= JSON.parse(DATA_URL);
 const container = document.getElementById("container"); // "Traemos" utilizando el DOM el div de id "container" para colocar la información en él
 
 /**
